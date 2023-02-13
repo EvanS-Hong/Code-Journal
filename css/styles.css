@@ -1,4 +1,46 @@
-.container > h1 {
+body {
+  background-color: #f0f0f0;
+}
+
+header {
+  background-color: #562b81;
+}
+
+header > .container > h1 {
+  color: white;
+}
+
+img {
+  margin-bottom: 30px;
+}
+
+label {
+  margin-top: 15px;
+  font-weight: 900;
+  font-size: 1.5rem;
+}
+
+input {
+  margin-top: 10px;
+  border-style: solid;
+  border-radius: 0.3em;
+  border-color: #b6b6b6;
+  size: 5rem;
+  font-size: 1.5rem;
+  padding: 10px;
+  margin-bottom: 35px;
+}
+
+textarea {
+  font-size: 1.5rem;
+}
+
+button {
   background-color: #562b81;
   color: white;
+  margin-left: auto;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  padding: 5px 15px;
+  font-size: 1.2rem;
 }
