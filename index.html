@@ -22,7 +22,17 @@
     </div>
   </header>
   <main class="container">
-    <div data-view="entry-form"></div>
+    <div data-view="entry-form">
+      <h1 class="row column-full"> New Entry</h1>
+      <img class="row column-full" src="/images/placeholder-image-square.jpg">
+      <label for="title" class="row column-half"> Title </label>
+      <input name="title" class="column-full" type="text">
+      <label for="imgUrl" class="row column-full"> Photo URL </label>
+      <input name="imgUrl" class="column-full" type="url">
+      <label for="notes" class="row column-full"> Notes </label>
+      <textarea name="notes" class="column-full" cols="30" rows="10"></textarea>
+      <button type="submit" name="save" class="row"> Save </button>
+    </div>
     <div data-view="entries" class="hidden"></div>
   </main>
   <script src="js/data.js"></script>
