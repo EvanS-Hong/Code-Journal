@@ -23,12 +23,16 @@
   </header>
   <main class="container">
     <div data-view="entry-form">
-      <h1 class="row column-full"> New Entry</h1>
-      <img class="row column-full" src="/images/placeholder-image-square.jpg">
-      <label for="title" class="row column-half"> Title </label>
-      <input name="title" class="column-full" type="text">
-      <label for="imgUrl" class="row column-full"> Photo URL </label>
-      <input name="imgUrl" class="column-full" type="url">
+      <h1 class=" column-full"> New Entry</h1>
+      <div class="row">
+        <img class="column-full column-half" src="/images/placeholder-image-square.jpg">
+        <div class="column-half">
+          <label for="title" class=" column-half"> Title </label>
+          <input name="title" class="column-full" type="text">
+          <label for="imgUrl" class=" column-full"> Photo URL </label>
+          <input name="imgUrl" class="column-full" type="url">
+        </div>
+      </div>
       <label for="notes" class="row column-full"> Notes </label>
       <textarea name="notes" class="column-full" cols="30" rows="10"></textarea>
       <button type="submit" name="save" class="row"> Save </button>
