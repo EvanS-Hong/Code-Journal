@@ -7,7 +7,6 @@ function imagePreview() {
 newPicture.addEventListener('input', imagePreview);
 
 var nextEntryId = 0;
-var entres = [];
 var form = document.getElementById('form');
 
 function formSubmit(entry) {
@@ -21,7 +20,7 @@ function formSubmit(entry) {
     text: notes.value,
     entryID: nextEntryId
   }; nextEntryId += 1;
-  entres.push(newObj);
+  (data.entries).push(newObj);
   oldImg.src = '/images/placeholder-image-square.jpg';
   form.reset();
 }
@@ -35,6 +34,7 @@ function renderEntry(entry) {
   li.appendChild(div1);
 
   var img = document.createElement('img');
+  img.src = entry.photoUrl;
   img.setAttribute('class', 'column-half');
   div1.appendChild(img);
 
@@ -43,13 +43,16 @@ function renderEntry(entry) {
   div1.appendChild(div2);
 
   var h2 = document.createElement('h2');
+  h2.textContent = entry.title;
   div2.appendChild(h2);
 
   var p = document.createElement('p');
+  p.textContent = entry.text;
   div2.appendChild(p);
 
   return li;
 }
+
 function domCreation() {
   var ul = document.querySelector('ul');
   for (var i = 0; i < (data.entries).length; i++) {
@@ -57,5 +60,4 @@ function domCreation() {
     ul.appendChild(newElement);
   }
 }
-
 document.addEventListener('DOMContentLoaded', domCreation);

@@ -19,11 +19,11 @@
   <header>
     <div class="container row header">
       <h1> Code Journal </h1>
-      <h2 class="view"> Entries </h2>
+      <h2> Entries </h2>
     </div>
   </header>
   <main class="container">
-    <div data-view="entry-form" class="hidden">
+    <div data-view="entry-form">
       <h1 class=" column-full"> New Entry</h1>
       <form id="form">
         <div class="row">
@@ -41,33 +41,14 @@
       </form>
     </div>
     <div data-view="entries">
+      <div class="empty hidden">
+        <p> No entires have been recorded. </p>
+      </div>
       <div class="row column-full colum-half">
         <h1> Entries </h1>
         <p> NEW </p>
       </div>
-      <div class="empty hidden">
-        <p> No entires have been recorded. </p>
-      </div>
       <ul>
-        <li>
-          <div class="row">
-            <img class="column-half" src="images/placeholder-image-square.jpg">
-            <div class="column-half">
-              <h2> Ada Lovelace </h2>
-              <p> Augusta Ada King, Countess of Lovelace was an English mathematician and writer, chhiefly known for her work on Charles Babbage's proposed mechnical general-purpose computer, the Analytical Engine. <br><br> She was the first to recognize that the machine had applications beyond pure calculation, and to have published the first algorithm intended to be carried out by such machine. </p>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="row">
-            <img class="column-half" src="images/placeholder-image-square.jpg">
-            <div class="column-half">
-              <h2> JavaScript</h2>
-              <p> JavaScript, often abbreviated as JS, is a programming languag that confroms to the ECMAScript specification. <br><br> JavaScript is a high-level, often just-in-time compiled, and muli-paradigm. It has curly-bracket syntax, dynamic typing, prototype-based objectc=-orientation, and first-class functions.
-            </div>
-          </div>
-          </p>
-        </li>
       </ul>
     </div>
   </main>

@@ -8,7 +8,7 @@ var data = {
 };
 
 var previousEntriesJSON = localStorage.getItem('javascript-local-storage');
-function JsonSerialize() {
+function JsonSerialize(entry) {
   var dataJSON = JSON.stringify(data.entries);
   localStorage.setItem('javascript-local-storage', dataJSON);
 }
