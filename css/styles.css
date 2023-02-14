@@ -3,11 +3,26 @@ body {
 }
 
 header {
+  padding-top: 1px;
+  padding-bottom: 1px;
   background-color: #562b81;
+}
+
+.header > h1 {
+  font-weight: 300;
 }
 
 header > .container > h1 {
   color: white;
+}
+
+.header > h2 {
+  color: white;
+  margin-right: auto;
+  font-weight: 200;
+  font-size: 25px;
+  margin-top: 1.08em;
+  margin-left: 30px;
 }
 
 img {
@@ -47,4 +62,29 @@ textarea {
 
 #submit:hover {
   cursor: pointer;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.row > p {
+  background: #562b81;
+  align-items: center;
+  margin-left: auto;
+  margin-top: auto;
+  padding-top: 7px;
+  padding-right: 10px;
+  padding-left: 10px;
+  padding-bottom: 7px;
+  border-radius: 0.3em;
+  color: white;
+}
+
+.empty > p {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  font-size: 25px;
 }
