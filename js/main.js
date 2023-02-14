@@ -61,3 +61,13 @@ function domCreation() {
   }
 }
 document.addEventListener('DOMContentLoaded', domCreation);
+/*
+function toggleNoEntries() {
+  var noEntries = document.querySelector('.empty');
+  if (data.entries.length === 0) {
+    noEntries.className = '';
+  } else {
+    noEntries.className = 'hidden';
+  }
+}
+*/
