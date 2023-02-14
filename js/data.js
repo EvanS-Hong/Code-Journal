@@ -6,3 +6,11 @@ var data = {
   editing: null,
   nextEntryId: 1
 };
+
+// var localStorage = '';
+// function JsonSerialize() {
+//  var entresJSON = JSON.stringify(entres);
+// localStorage.setItem('javascript-local-storage', entresJSON);
+// }
+
+// window.addEventListener('beforeunload', JsonSerialize);
