@@ -50,9 +50,12 @@ function renderEntry(entry) {
 
   return li;
 }
-
-var ul = document.querySelector('ul');
-for (var i = 0; i < (data.entries).length; i++) {
-  var newElement = renderEntry(data.entries[i]);
-  ul.appendChild(newElement);
+function domCreation() {
+  var ul = document.querySelector('ul');
+  for (var i = 0; i < (data.entries).length; i++) {
+    var newElement = renderEntry(data.entries[i]);
+    ul.appendChild(newElement);
+  }
 }
+
+document.addEventListener('DOMContentLoaded', domCreation);
