@@ -21,6 +21,7 @@ function formSubmit(entry) {
     text: notes.value,
     entryID: nextEntryId
   };
+  nextEntryId += 1;
   data.entries.unshift(newObj);
   oldImg.src = '/images/placeholder-image-square.jpg';
   form.reset();
@@ -34,7 +35,7 @@ function formSubmit(entry) {
 form.addEventListener('submit', formSubmit);
 
 function renderEntry(entry) {
-  nextEntryId += 1;
+
   var li = document.createElement('li');
 
   var div1 = document.createElement('div');
