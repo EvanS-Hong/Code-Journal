@@ -17,12 +17,13 @@
 </head>
 <body>
   <header>
-    <div class="container">
-      <h1 class="row column-full"> Code Journal </h1>
+    <div class="container row header">
+      <h1> Code Journal </h1>
+      <a class="entries" data-view="entries" href=""> Entries </a>
     </div>
   </header>
   <main class="container">
-    <div data-view="entry-form">
+    <div class="tab1" data-view="entry-form">
       <h1 class=" column-full"> New Entry</h1>
       <form id="form">
         <div class="row">
@@ -39,7 +40,17 @@
         <button id="submit" type="submit" name="save" class="row"> Save </button>
       </form>
     </div>
-    <div data-view="entries" class="hidden"></div>
+    <div class="tab2 hidden" data-view="entries">
+      <div class="row column-full colum-half">
+        <h1> Entries </h1>
+        <a class="new" data-view="entry-form" href=""> NEW </a>
+      </div>
+      <div id="empty" class="hidden">
+        <p> No entires have been recorded. </p>
+      </div>
+      <ul>
+      </ul>
+    </div>
   </main>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
