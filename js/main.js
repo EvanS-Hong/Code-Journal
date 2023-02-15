@@ -70,4 +70,17 @@ function toggleNoEntries() {
     noEntries.className = 'hidden';
   }
 }
+
+function viewSwap(viewName) {
+  var tab1 = document.querySelector('.tab1');
+  var tab2 = document.querySelector('.tab2');
+  if (viewName === 'entries') {
+    tab1.className = 'tab1 hidden';
+    tab2.className = 'tab2';
+  } else if (viewName === 'entry-form') {
+    tab1.className = 'tab1';
+    tab2.className = 'tab2 hidden';
+  }
+  data.view = viewName;
+}
 */
