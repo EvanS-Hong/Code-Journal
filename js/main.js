@@ -6,7 +6,6 @@ function imagePreview() {
 }
 newPicture.addEventListener('input', imagePreview);
 
-var nextEntryId = 0;
 var form = document.getElementById('form');
 var ul = document.querySelector('ul');
 
@@ -19,11 +18,11 @@ function formSubmit(entry) {
     title: title.value,
     photoUrl: photoInput.value,
     text: notes.value,
-    entryID: nextEntryId
+    entryID: data.nextEntryId
   };
-  nextEntryId += 1;
   data.entries.unshift(newObj);
   oldImg.src = '/images/placeholder-image-square.jpg';
+  data.nextEntryId += 1;
   form.reset();
   var newElement = renderEntry(newObj);
   ul.prepend(newElement);
@@ -69,7 +68,6 @@ function domCreation() {
     ul.appendChild(newElement);
   }
 
-  data.view = localStorage.getItem('current screen');
   viewSwap(data.view);
 
   if (data.entries.length === 0) {
@@ -101,23 +99,14 @@ function viewSwap(viewName) {
   data.view = viewName;
 }
 
+function buttonSwap(event) {
+  event.preventDefault();
+  var button = event.target.getAttribute('data-view');
+  viewSwap(button);
+}
+
 var entriesButton = document.querySelector('.entries');
 var newForm = document.querySelector('.new');
 
-function viewSwap2(event) {
-  event.preventDefault();
-  var tab1 = document.querySelector('.tab1');
-  var tab2 = document.querySelector('.tab2');
-  var button = event.target.getAttribute('data-view');
-  if (button === 'entries') {
-    tab1.className = 'tab1 hidden';
-    tab2.className = 'tab2';
-  } else if (button === 'entry-form') {
-    tab1.className = 'tab1';
-    tab2.className = 'tab2 hidden';
-  }
-  data.view = button;
-}
-
-entriesButton.addEventListener('click', viewSwap2);
-newForm.addEventListener('click', viewSwap2);
+entriesButton.addEventListener('click', buttonSwap);
+newForm.addEventListener('click', buttonSwap);
