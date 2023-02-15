@@ -36,6 +36,7 @@ form.addEventListener('submit', formSubmit);
 function renderEntry(entry) {
 
   var li = document.createElement('li');
+  li.setAttribute('data-entry-id', entry.entryID);
 
   var div1 = document.createElement('div');
   div1.setAttribute('class', 'row');
@@ -50,9 +51,18 @@ function renderEntry(entry) {
   div2.setAttribute('class', 'column-half');
   div1.appendChild(div2);
 
+  var div3 = document.createElement('div');
+  div3.setAttribute('class', 'row');
+  div2.appendChild(div3);
+
   var h2 = document.createElement('h2');
   h2.textContent = entry.title;
-  div2.appendChild(h2);
+  div3.appendChild(h2);
+
+  var I = document.createElement('i');
+  I.setAttribute('class', 'fa fa-pencil');
+  I.setAttribute('aria-hidden', 'true');
+  div3.appendChild(I);
 
   var p = document.createElement('p');
   p.textContent = entry.text;
