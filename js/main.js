@@ -20,9 +20,20 @@ function formSubmit(entry) {
     text: notes.value,
     entryID: nextEntryId
   }; nextEntryId += 1;
-  (data.entries).push(newObj);
+  data.entries.unshift(newObj);
   oldImg.src = '/images/placeholder-image-square.jpg';
   form.reset();
+
+  renderEntry();
+  var newElement = renderEntry(entry);
+  ul.prepend(newElement);
+
+  viewSwap('entires');
+
+  if (data.entries.length === 0) {
+    toggleNoEntries();
+  }
+
 }
 form.addEventListener('submit', formSubmit);
 
@@ -53,15 +64,18 @@ function renderEntry(entry) {
   return li;
 }
 
+var ul = document.querySelector('ul');
+
 function domCreation() {
   var ul = document.querySelector('ul');
   for (var i = 0; i < (data.entries).length; i++) {
     var newElement = renderEntry(data.entries[i]);
     ul.appendChild(newElement);
   }
+  viewSwap(data.view);
 }
 document.addEventListener('DOMContentLoaded', domCreation);
-/*
+
 function toggleNoEntries() {
   var noEntries = document.querySelector('.empty');
   if (data.entries.length === 0) {
@@ -83,4 +97,3 @@ function viewSwap(viewName) {
   }
   data.view = viewName;
 }
-*/
