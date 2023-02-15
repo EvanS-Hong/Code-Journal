@@ -8,6 +8,7 @@ newPicture.addEventListener('input', imagePreview);
 
 var nextEntryId = 0;
 var form = document.getElementById('form');
+var ul = document.querySelector('ul');
 
 function formSubmit(entry) {
   event.preventDefault();
@@ -19,25 +20,21 @@ function formSubmit(entry) {
     photoUrl: photoInput.value,
     text: notes.value,
     entryID: nextEntryId
-  }; nextEntryId += 1;
+  };
   data.entries.unshift(newObj);
   oldImg.src = '/images/placeholder-image-square.jpg';
   form.reset();
-
-  renderEntry();
-  var newElement = renderEntry(entry);
+  var newElement = renderEntry(newObj);
   ul.prepend(newElement);
-
-  viewSwap('entires');
-
-  if (data.entries.length === 0) {
+  if (data.entries.length !== 0) {
     toggleNoEntries();
   }
-
+  viewSwap('entries');
 }
 form.addEventListener('submit', formSubmit);
 
 function renderEntry(entry) {
+  nextEntryId += 1;
   var li = document.createElement('li');
 
   var div1 = document.createElement('div');
@@ -64,20 +61,25 @@ function renderEntry(entry) {
   return li;
 }
 
-var ul = document.querySelector('ul');
-
 function domCreation() {
   var ul = document.querySelector('ul');
   for (var i = 0; i < (data.entries).length; i++) {
     var newElement = renderEntry(data.entries[i]);
     ul.appendChild(newElement);
   }
+
+  data.view = localStorage.getItem('current screen');
   viewSwap(data.view);
+
+  if (data.entries.length === 0) {
+    toggleNoEntries();
+  }
 }
+
 document.addEventListener('DOMContentLoaded', domCreation);
 
 function toggleNoEntries() {
-  var noEntries = document.querySelector('.empty');
+  var noEntries = document.getElementById('empty');
   if (data.entries.length === 0) {
     noEntries.className = '';
   } else {
@@ -97,3 +99,24 @@ function viewSwap(viewName) {
   }
   data.view = viewName;
 }
+
+var entriesButton = document.querySelector('.entries');
+var newForm = document.querySelector('.new');
+
+function viewSwap2(event) {
+  event.preventDefault();
+  var tab1 = document.querySelector('.tab1');
+  var tab2 = document.querySelector('.tab2');
+  var button = event.target.getAttribute('data-view');
+  if (button === 'entries') {
+    tab1.className = 'tab1 hidden';
+    tab2.className = 'tab2';
+  } else if (button === 'entry-form') {
+    tab1.className = 'tab1';
+    tab2.className = 'tab2 hidden';
+  }
+  data.view = button;
+}
+
+entriesButton.addEventListener('click', viewSwap2);
+newForm.addEventListener('click', viewSwap2);

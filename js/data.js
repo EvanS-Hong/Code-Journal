@@ -10,7 +10,9 @@ var data = {
 var previousEntriesJSON = localStorage.getItem('javascript-local-storage');
 function JsonSerialize(entry) {
   var dataJSON = JSON.stringify(data.entries);
+  var currentView = data.view;
   localStorage.setItem('javascript-local-storage', dataJSON);
+  localStorage.setItem('current screen', currentView);
 }
 
 window.addEventListener('beforeunload', JsonSerialize);
