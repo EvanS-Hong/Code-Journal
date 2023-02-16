@@ -132,6 +132,15 @@ function edit() {
         data.editing = data.entries[i];
       }
     }
+    var title = document.getElementById('title');
+    var photoInput = document.getElementById('photoInput');
+    var notes = document.getElementById('notes');
+    title.value = data.editing.title;
+    photoInput.value = data.editing.photoUrl;
+    notes.value = data.editing.text;
+    oldImg.src = photoInput.value;
+    var header = document.querySelector('.new-entry');
+    header.textContent = 'Edit entry';
   }
 }
 ul.addEventListener('click', edit);
