@@ -54,8 +54,8 @@ function formSubmit(entry) {
       data.editing = null;
       form.reset();
       oldImg.src = '/images/placeholder-image-square.jpg';
+      viewSwap();
     }
-
   }
 }
 
