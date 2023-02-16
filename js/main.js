@@ -37,6 +37,7 @@ function renderEntry(entry) {
 
   var li = document.createElement('li');
   li.setAttribute('data-entry-id', entry.entryID);
+  li.setAttribute('class', 'entry-item');
 
   var div1 = document.createElement('div');
   div1.setAttribute('class', 'row');
@@ -120,3 +121,17 @@ var newForm = document.querySelector('.new');
 
 entriesButton.addEventListener('click', buttonSwap);
 newForm.addEventListener('click', buttonSwap);
+
+function edit() {
+  if (event.target.tagName === 'I') {
+    viewSwap('entry-form');
+    var closest = event.target.closest('.entry-item');
+    var entryID = closest.getAttribute('data-entry-id');
+    for (var i = 0; i < data.entries.length; i++) {
+      if (entryID * 1 === data.entries[i].entryID) {
+        data.editing = data.entries[i];
+      }
+    }
+  }
+}
+ul.addEventListener('click', edit);
