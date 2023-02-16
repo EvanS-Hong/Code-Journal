@@ -101,3 +101,11 @@ i {
 i:hover {
   cursor: pointer;
 }
+
+#delete-entry {
+  color: red;
+  text-decoration: underline;
+  border: none;
+  font-size: 1.2em;
+  margin-bottom: 1em;
+}

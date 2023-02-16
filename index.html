@@ -37,7 +37,10 @@
         </div>
         <label for="notes" class="row column-full"> Notes </label>
         <textarea id="notes" name="notes" class="column-full" cols="30" rows="10"></textarea>
-        <button id="submit" type="submit" name="save" class="row"> Save </button>
+        <div class="row">
+          <button id="delete-entry" type="button" name="delete" class="hidden"> Delete Entry </button>
+          <button id="submit" type="submit" name="save" class="row"> Save </button>
+        </div>
       </form>
     </div>
     <div class="tab2 hidden" data-view="entries">

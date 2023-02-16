@@ -42,7 +42,7 @@ function formSubmit(entry) {
       entryID: data.editing.entryID
     };
     for (var i = 0; i < data.entries.length; i++) {
-      if (data.editing.entryID === data.entries[i].entryID) {
+      if ((data.editing.entryID) === data.entries[i].entryID) {
         data.entries[i] = data.editing;
         var editedEntry = data.entries[i];
       }
@@ -54,7 +54,8 @@ function formSubmit(entry) {
       data.editing = null;
       form.reset();
       oldImg.src = '/images/placeholder-image-square.jpg';
-      viewSwap();
+      viewSwap('entries');
+      entryDelete();
     }
   }
 }
@@ -169,6 +170,16 @@ function edit() {
     oldImg.src = photoInput.value;
     var header = document.querySelector('.new-entry');
     header.textContent = 'Edit entry';
+    entryDelete();
   }
 }
 ul.addEventListener('click', edit);
+
+function entryDelete() {
+  var deleteEntry = document.getElementById('delete-entry');
+  if (data.editing !== null) {
+    deleteEntry.className = '';
+  } else if (data.editing === null) {
+    deleteEntry.className = 'hidden';
+  }
+}
