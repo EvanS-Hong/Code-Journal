@@ -11,26 +11,54 @@ var ul = document.querySelector('ul');
 
 function formSubmit(entry) {
   event.preventDefault();
-  var title = document.getElementById('title');
-  var photoInput = document.getElementById('photoInput');
-  var notes = document.getElementById('notes');
-  var newObj = {
-    title: title.value,
-    photoUrl: photoInput.value,
-    text: notes.value,
-    entryID: data.nextEntryId
-  };
-  data.entries.unshift(newObj);
-  oldImg.src = '/images/placeholder-image-square.jpg';
-  data.nextEntryId += 1;
-  form.reset();
-  var newElement = renderEntry(newObj);
-  ul.prepend(newElement);
-  if (data.entries.length !== 0) {
-    toggleNoEntries();
+  if (data.editing === null) {
+    var title = document.getElementById('title');
+    var photoInput = document.getElementById('photoInput');
+    var notes = document.getElementById('notes');
+    var newObj = {
+      title: title.value,
+      photoUrl: photoInput.value,
+      text: notes.value,
+      entryID: data.nextEntryId
+    };
+    data.entries.unshift(newObj);
+    oldImg.src = '/images/placeholder-image-square.jpg';
+    data.nextEntryId += 1;
+    form.reset();
+    var newElement = renderEntry(newObj);
+    ul.prepend(newElement);
+    if (data.entries.length !== 0) {
+      toggleNoEntries();
+    }
+    viewSwap('entries');
+  } else if (data.editing !== null) {
+    var title2 = document.getElementById('title');
+    var photoInput2 = document.getElementById('photoInput');
+    var notes2 = document.getElementById('notes');
+    data.editing = {
+      title: title2.value,
+      photoUrl: photoInput2.value,
+      text: notes2.value,
+      entryID: data.editing.entryID
+    };
+    for (var i = 0; i < data.entries.length; i++) {
+      if (data.editing.entryID === data.entries[i].entryID) {
+        data.entries[i] = data.editing;
+        var editedEntry = data.entries[i];
+      }
+      var oldElement = document.querySelector('[data-entry-id]', data.entries[i].entryID);
+      var editedElement = renderEntry(editedEntry);
+      ul.replaceChild(editedElement, oldElement);
+      var header = document.querySelector('.new-entry');
+      header.textContent = 'New entry';
+      data.editing = null;
+      form.reset();
+      oldImg.src = '/images/placeholder-image-square.jpg';
+    }
+
   }
-  viewSwap('entries');
 }
+
 form.addEventListener('submit', formSubmit);
 
 function renderEntry(entry) {
