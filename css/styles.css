@@ -108,6 +108,7 @@ i:hover {
   border: none;
   font-size: 1.2em;
   margin-bottom: 1em;
+  cursor: pointer;
 }
 
 #overlay {
@@ -145,6 +146,7 @@ i:hover {
     padding: 7px 10px;
     margin-bottom: 10px;
     border-radius: 8%;
+    cursor: pointer;
   }
 
   #confirm {
@@ -156,5 +158,6 @@ i:hover {
     margin-bottom: 10px;
     border-radius: 8%;
     margin-right: 5%;
+    cursor: pointer;
   }
 }
