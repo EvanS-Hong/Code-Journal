@@ -9,8 +9,6 @@ newPicture.addEventListener('input', imagePreview);
 var form = document.getElementById('form');
 var ul = document.querySelector('ul');
 
-//  random comment
-
 function formSubmit(entry) {
   event.preventDefault();
   if (data.editing === null) {
@@ -47,17 +45,18 @@ function formSubmit(entry) {
       if ((data.editing.entryID) === data.entries[i].entryID) {
         data.entries[i] = data.editing;
         var editedEntry = data.entries[i];
+        var oldElement = document.querySelector('[data-entry-id="' + editedEntry.entryID + '"]');
+        var editedElement = renderEntry(editedEntry);
+
+        ul.replaceChild(editedElement, oldElement);
+        var header = document.querySelector('.new-entry');
+        header.textContent = 'New entry';
+        data.editing = null;
+        form.reset();
+        oldImg.src = '/images/placeholder-image-square.jpg';
+        viewSwap('entries');
+        entryDelete();
       }
-      var oldElement = document.querySelector('[data-entry-id]', data.entries[i].entryID);
-      var editedElement = renderEntry(editedEntry);
-      ul.replaceChild(editedElement, oldElement);
-      var header = document.querySelector('.new-entry');
-      header.textContent = 'New entry';
-      data.editing = null;
-      form.reset();
-      oldImg.src = '/images/placeholder-image-square.jpg';
-      viewSwap('entries');
-      entryDelete();
     }
   }
 }
@@ -134,6 +133,10 @@ function viewSwap(viewName) {
   if (viewName === 'entries') {
     tab1.className = 'tab1 hidden';
     tab2.className = 'tab2';
+    oldImg.src = '/images/placeholder-image-square.jpg';
+    form.reset();
+    data.editing = null;
+    entryDelete();
   } else if (viewName === 'entry-form') {
     tab1.className = 'tab1';
     tab2.className = 'tab2 hidden';
@@ -177,11 +180,52 @@ function edit() {
 }
 ul.addEventListener('click', edit);
 
+var deleteEntry = document.getElementById('delete-entry');
+
 function entryDelete() {
-  var deleteEntry = document.getElementById('delete-entry');
   if (data.editing !== null) {
     deleteEntry.className = '';
   } else if (data.editing === null) {
     deleteEntry.className = 'hidden';
   }
 }
+
+var deleteForm = document.getElementById('delete-form');
+var overlay = document.getElementById('overlay');
+
+function deleteWindow() {
+  overlay.className = '';
+  deleteForm.className = 'container';
+}
+
+deleteEntry.addEventListener('click', deleteWindow);
+
+var cancelButton = document.getElementById('cancel');
+var confirmButton = document.getElementById('confirm');
+
+function hideWindow() {
+  overlay.className = 'hidden';
+  deleteForm.className = 'container hidden';
+}
+
+function removeElement() {
+  for (var i = 0; i < data.entries.length; i++) {
+    if (data.editing.entryID === data.entries[i].entryID) {
+      data.entries.splice(i, 1);
+      // var editedEntry = data.entries[i];
+      var oldElement = document.querySelector('[data-entry-id="' + data.editing.entryID + '"]');
+      oldElement.remove();
+      if (data.entries.length === 0) {
+        toggleNoEntries();
+      }
+      oldImg.src = '/images/placeholder-image-square.jpg';
+      hideWindow();
+      form.reset();
+      viewSwap('entries');
+      return;
+    }
+  }
+}
+
+cancelButton.addEventListener('click', hideWindow);
+confirmButton.addEventListener('click', removeElement);
