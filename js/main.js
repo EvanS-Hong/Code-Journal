@@ -56,6 +56,7 @@ function formSubmit(entry) {
         oldImg.src = '/images/placeholder-image-square.jpg';
         viewSwap('entries');
         entryDelete();
+        return;
       }
     }
   }
